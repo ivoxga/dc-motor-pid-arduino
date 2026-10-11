@@ -52,7 +52,7 @@ Every time the board is powered on:
 
 In the recorded run, the "startup time" variable (the instant the maximum speed was reached) read **22 s**, and the maximum speed was around **190 RPM**.
 
-![Maximum RPM and startup time](graphs_prints/01-max-rpm-startup.png)
+![Maximum RPM and startup time](graphs_prints/PID_P50_Calibracao.png)
 
 ### 3. The PID controller
 
