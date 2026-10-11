@@ -4,15 +4,17 @@ Closed-loop speed control of a DC motor on an **Arduino**, with the **PID algori
 
 The project covers the whole tuning process: automatic calibration of the motor's maximum speed, a study of the **P**, **PI** and **PID** controllers at three speed levels (25%, 50% and 75% of the maximum), smooth acceleration and braking **ramps**, and a final **dynamic speed profile** that runs by itself. Everything is monitored live with **MegunoLink**.
 
+> Project developed for the course **Electric Machines**, BSc in **Electrical and Computer Engineering**, **Instituto Politécnico do Cávado e Ave (IPCA)**, **2st year**.
+
 ---
 
 ## Repository structure
 
 ```
 .
-├── MotorCC_PID/
-│   └── MotorCC_PID.ino     # Arduino sketch
-├── images/                 # screenshots of the MegunoLink plots
+├── MotorCC_PID.ino     # Arduino sketch
+├── graphs_prints/      # screenshots of the MegunoLink plots
+├── circuit.png         
 └── README.md
 ```
 
@@ -50,7 +52,7 @@ Every time the board is powered on:
 
 In the recorded run, the "startup time" variable (the instant the maximum speed was reached) read **22 s**, and the maximum speed was around **190 RPM**.
 
-![Maximum RPM and startup time](images/01-max-rpm-startup.png)
+![Maximum RPM and startup time](graphs_prints/01-max-rpm-startup.png)
 
 ### 3. The PID controller
 
