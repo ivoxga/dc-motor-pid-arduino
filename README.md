@@ -54,6 +54,10 @@ In the recorded run, the "startup time" variable (the instant the maximum speed 
 
 ![Maximum RPM and startup time](graphs_prints/PID_P50_Calibração.png)
 
+The full cycle, with the 10 s at full speed, the 3 s pause and the start of the controller (P only, 50% setpoint):
+
+![Full cycle: calibration, pause and control](graphs_prints/pid_P50_geral.png)
+
 ### 3. The PID controller
 
 The three terms are implemented in discrete form, evaluated every 10 ms:
@@ -85,8 +89,6 @@ The target speed follows a straight line over time, `y = m·x + b`, where `x` is
 
 In the sketch, `RampaAcelDecel()` implements a 5-second ramp up to the setpoint. The other variants (10-second ramp up, 5-second ramp down, and a combination) are kept as commented code blocks.
 
-![All the projected ramp lines](images/11-ramps-overview.png)
-
 ### 5. Dynamic speed profile
 
 `Comportamento()` chains the steps below with `if / else if` conditions on the time elapsed since the controller started:
@@ -100,7 +102,7 @@ In the sketch, `RampaAcelDecel()` implements a 5-second ramp up to the setpoint.
 | 14 – 17 | 25% of the maximum speed |
 | after 17 | Motor off |
 
-![Dynamic speed profile](images/16-dynamic-profile.png)
+![Dynamic speed profile](graphs_prints/7.png)
 
 ### Live plot
 
@@ -116,7 +118,11 @@ With only the proportional term the motor does not reach the setpoint, which is 
 
 | 75% (Kp = 8.3) | 50% (Kp = 3) | 25% (Kp = 2.13) |
 |---|---|---|
-| ![P 75%](images/02-p-75.png) | ![P 50%](images/03-p-50.png) | ![P 25%](images/04-p-25.png) |
+| ![P 75%](graphs_prints/PID_P_75.png) | ![P 50%](graphs_prints/PID_P_50.png) | ![P 25%](graphs_prints/PID_P_25.png) |
+
+Detail of the 75% response with the final Kp:
+
+![P 75%, detail](graphs_prints/PID_P_75_2.png)
 
 ### PI controller
 
@@ -124,7 +130,7 @@ Adding the integral term removes the steady-state error, and the motor reaches t
 
 | 25% (Ki = 0.08) | 50% (Ki = 0.03) | 75% (Ki = 0.035) |
 |---|---|---|
-| ![PI 25%](images/05-pi-25.png) | ![PI 50%](images/06-pi-50.png) | ![PI 75%](images/07-pi-75.png) |
+| ![PI 25%](graphs_prints/PID_PI_25.png) | ![PI 50%](graphs_prints/PID_PI_50.png) | ![PI 75%](graphs_prints/PID_PI_75.png) |
 
 ### PID controller
 
@@ -132,7 +138,7 @@ The derivative term smooths the response and reduces oscillations.
 
 | 25% (Kd = 0.4) | 50% (Kd = 15) | 75% (Kd = 30) |
 |---|---|---|
-| ![PID 25%](images/08-pid-25.png) | ![PID 50%](images/09-pid-50.png) | ![PID 75%](images/10-pid-75.png) |
+| ![PID 25%](graphs_prints/PID_PID_25.png) | ![PID 50%](graphs_prints/PID_PID_50.png) | ![PID 75%](graphs_prints/PID_PID_75.png) |
 
 - **25%:** the startup overshoot was attenuated but not eliminated, and the speed is much more linear over time.
 - **50%:** no overshoot and the fewest oscillations of all the attempts.
@@ -144,11 +150,11 @@ Using the 50% gains, the ramps were tested with different slopes:
 
 | 5 s acceleration | 10 s acceleration |
 |---|---|
-| ![Ramp up 5 s](images/12-ramp-up-5s.png) | ![Ramp up 10 s](images/13-ramp-up-10s.png) |
+| ![Ramp up 5 s](graphs_prints/6-a.png) | ![Ramp up 10 s](graphs_prints/6-b.png) |
 
 | 5 s braking | 10 s acceleration + 5 s braking |
 |---|---|
-| ![Ramp down 5 s](images/14-ramp-down-5s.png) | ![Ramp up 10 s and down 5 s](images/15-ramp-up-10s-down-5s.png) |
+| ![Ramp down 5 s](graphs_prints/6-c.png) | ![Ramp up 10 s and down 5 s](graphs_prints/6-d.png) |
 
 In the last case the braking ramp had to be advanced a lot compared with the theoretical value to obtain this behaviour.
 
