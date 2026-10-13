@@ -8,7 +8,7 @@ The project covers the whole tuning process: automatic calibration of the motor'
 
 ---
   
-## Repository structure
+## Repository structure 
 
 ```
 .
